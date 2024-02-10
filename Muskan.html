@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine Muskii?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: black;
+            font-size: 2em;
+        }
+        img {
+            display: block;
+            margin: auto;
+            cursor: pointer;
+        }
+        .btn-container {
+            margin: 20px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 10px;
+            transition: font-size 0.5s;
+        }
+        button.yes {
+            background-color: green;
+            color: white;
+        }
+        button.no {
+            background-color: red;
+            color: white;
+        }
+        #result-container {
+            display: none;
+            margin-top: 20px;
+        }
+        #result-text {
+            margin-top: 10px;
+            font-size: 1.5em;
+            color: #ff1493;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my valentine Muskii?</h1>
+    <img id="panda-img" src="https://valen24.vercel.app/panda.gif" alt="Cute Panda" width="200" height="200">
+    <div class="btn-container">
+        <button id="yes-btn" class="yes">Yes</button>
+        <button id="no-btn" class="no">No</button>
+    </div>
+    <div id="result-container">
+        <img id="valentine-gif" src="https://i.pinimg.com/originals/9d/f6/09/9df609f311902f5555d6cf387b207b9a.gif" alt="Love you, we'll meet soon" width="300" height="300">
+        <p id="result-text">'I am so glad you're here and reading this! I am blessed for every moment passing in which you're in my life. You brighten my life with your smile, I cherish every moment with you. I love you deeply, and I eagerly await the day we can meet again, I promise we'll meet soon <3'</p>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const resultContainer = document.getElementById('result-container');
+        const resultText = document.getElementById('result-text');
+        let noClickCount = 0;
+        const noMessages = [
+            "Are you sure?",
+            "Aww Do you wanna hurt me?",
+            "I know you want to say Yes 😉",
+            "Don't be shy, just say Yes!",
+            "Come on, give me a chance!",
+            "I promise it'll be fun!"
+        ];
+
+        yesBtn.addEventListener('click', function() {
+            // Hide everything else
+            document.querySelector('h1').style.display = 'none';
+            document.getElementById('panda-img').style.display = 'none';
+            document.querySelector('.btn-container').style.display = 'none';
+            // Show the result container
+            resultContainer.style.display = 'block';
+        });
+
+        noBtn.addEventListener('click', function() {
+            if (noClickCount < noMessages.length) {
+                noBtn.textContent = noMessages[noClickCount];
+                noClickCount++;
+                yesBtn.style.fontSize = `${16 + 2 * noClickCount}px`; // Increase font size of "Yes" button
+            } else if (noClickCount === noMessages.length) {
+                noBtn.style.display = 'none'; // Hide "No" button after 8 clicks
+                yesBtn.style.fontSize = '16px'; // Reset font size of "Yes" button
+            }
+        });
+    </script>
+</body>
+</html>
